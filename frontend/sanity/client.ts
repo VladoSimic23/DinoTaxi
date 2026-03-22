@@ -8,9 +8,9 @@ export const client = createClient({
   useCdn: false,
 });
 
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-
 const builder = createImageUrlBuilder(client)
+type SanityImageSource = Parameters<typeof builder.image>[0];
+
 export function urlFor(source: SanityImageSource) {
   return builder.image(source)
 }
