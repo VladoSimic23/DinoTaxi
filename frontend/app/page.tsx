@@ -220,7 +220,7 @@ export default async function Home() {
                       <CheckCircle2 className="text-green-500" size={20} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-sm">{item.title}</h4>
+                      <h3 className="text-white font-bold text-sm">{item.title}</h3>
                       <span className="text-neutral-400 text-xs">{item.subtitle}</span>
                     </div>
                   </div>
@@ -237,7 +237,7 @@ export default async function Home() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <h2 className="text-4xl font-bold text-neutral-900 mb-4">Our Services & Transfers</h2>
-              <p className="text-neutral-500 text-lg">We offer a variety of transfer services tailored to your needs.</p>
+              <p className="text-neutral-600 text-lg">We offer a variety of transfer services tailored to your needs.</p>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

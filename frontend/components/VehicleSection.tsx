@@ -73,12 +73,14 @@ export default function VehicleSection({ vehicle }: { vehicle: Vehicle }) {
                 <>
                   <button 
                     onClick={scrollPrev}
+                    aria-label="Prethodna slika"
                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 disabled:opacity-0"
                   >
                     <ChevronLeft size={24} />
                   </button>
-                  <button 
+                  <button
                     onClick={scrollNext}
+                    aria-label="Sljedeća slika"
                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-3 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 disabled:opacity-0"
                   >
                     <ChevronRight size={24} />
@@ -113,14 +115,14 @@ export default function VehicleSection({ vehicle }: { vehicle: Vehicle }) {
 
             <div className="flex gap-6 mb-8 pb-8 border-b border-white/10">
               <div className="flex flex-col gap-1">
-                <span className="text-neutral-500 text-sm uppercase tracking-wider font-bold">Passengers</span>
+                <span className="text-neutral-400 text-sm uppercase tracking-wider font-bold">Passengers</span>
                 <div className="flex items-center gap-2 text-xl font-medium">
                   <Users className="text-yellow-500" />
                   Up to {vehicle.passengers}
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-neutral-500 text-sm uppercase tracking-wider font-bold">Luggage</span>
+                <span className="text-neutral-400 text-sm uppercase tracking-wider font-bold">Luggage</span>
                 <div className="flex items-center gap-2 text-xl font-medium">
                   <Briefcase className="text-yellow-500" />
                   {vehicle.luggage} Bags
@@ -130,7 +132,7 @@ export default function VehicleSection({ vehicle }: { vehicle: Vehicle }) {
 
             {vehicle.features && vehicle.features.length > 0 && (
               <div>
-                <h4 className="text-lg font-bold mb-4">Features & Amenities</h4>
+                <h3 className="text-lg font-bold mb-4">Features & Amenities</h3>
                 <div className="grid grid-cols-2 gap-4">
                   {vehicle.features.map((feature: string, idx: number) => (
                     <div key={idx} className="flex items-center gap-2 text-neutral-300">
