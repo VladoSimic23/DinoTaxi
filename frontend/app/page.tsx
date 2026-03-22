@@ -5,6 +5,8 @@ import FAQAccordion from "../components/FAQAccordion";
 import { Car, Clock, ShieldCheck, MapPin, Map, MessageCircle, ChevronRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 
+export const revalidate = 60; // ISR: Osvježava stranicu svakih 60 sekundi kada dođe novi request
+
 // Helper function for dynamic icons based on Sanity string
 const getIcon = (name: string) => {
   switch (name?.toLowerCase()) {
@@ -47,7 +49,6 @@ export default async function Home() {
   }
 
   const { hero, about, services, faq } = page;
-  const heroImageUrl = hero?.backgroundImage ? urlFor(hero.backgroundImage).url() : null;
 
   // JSON-LD Structured Data for LocalBusiness / TaxiService
   const jsonLd = {
@@ -130,25 +131,21 @@ export default async function Home() {
       </header>
 
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 flex items-center min-h-[90vh]">
-        {/* Background Image / Overlay */}
-        <div className="absolute inset-0 z-0 bg-neutral-900">
-          {heroImageUrl ? (
-            <Image 
-              src={heroImageUrl}
-              alt="Dubrovnik Taxi Hero"
-              fill
-              sizes="100vw"
-              loading="eager"
-              className="object-cover opacity-50"
-              priority
-            />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-800 to-black" />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent opacity-80" />
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 flex items-center min-h-[90vh] overflow-hidden">
+        {/* Background Dark Cool Overlay */}
+        <div className="absolute inset-0 z-0 bg-neutral-950">
+          {/* Subtle gradient pattern */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-neutral-800/40 via-neutral-950 to-black"></div>
+          
+          {/* Decorative glowing orbs */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-yellow-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
+          <div className="absolute -bottom-32 -left-32 w-[700px] h-[700px] bg-neutral-800/60 rounded-full blur-[150px] pointer-events-none"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-yellow-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+          
+          {/* Subtle grid pattern to give it a modern texture */}
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-[0.03]"></div>
         </div>
-        
+
         <div className="px-6 mx-auto w-full max-w-7xl relative z-10 text-center lg:text-left">
           <div className="max-w-3xl">
             <h1 className="text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
@@ -185,12 +182,13 @@ export default async function Home() {
             {about.image && (
               <div className="relative h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl order-2 lg:order-1 ring-1 ring-white/10">
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-transparent to-transparent z-10" />
-                <Image 
+                <Image
                   src={urlFor(about.image).url()}
                   alt={about.title || "About Dubrovnik Taxi"}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
+                  priority
                 />
               </div>
             )}
