@@ -1,6 +1,6 @@
 import { client, urlFor } from "../sanity/client";
 import WhatsAppButton from "../components/WhatsAppButton";
-import VehicleSection from "../components/VehicleSection";
+import VehicleSection, { Vehicle } from "../components/VehicleSection";
 import FAQAccordion from "../components/FAQAccordion";
 import { Car, Clock, ShieldCheck, MapPin, Map, MessageCircle, ChevronRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
@@ -23,7 +23,7 @@ export default async function Home() {
   const [page, config, vehicleData] = await Promise.all([
     client.fetch(`*[_type == "homepage"][0]`),
     client.fetch(`*[_type == "siteConfig"][0]`),
-    client.fetch(`*[_type == "vehicle"][0]{
+    client.fetch(`*[_type == "vehicle"] | order(_createdAt asc){
       name,
       type,
       passengers,
@@ -188,6 +188,7 @@ export default async function Home() {
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
+                  loading="eager"
                   priority
                 />
               </div>
@@ -255,10 +256,10 @@ export default async function Home() {
         </section>
       )}
 
-      {/* VEHICLE SECTION */}
-      {vehicleData && (
-        <VehicleSection vehicle={vehicleData} />
-      )}
+      {/* VEHICLES SECTION */}
+      {vehicleData && vehicleData.length > 0 && vehicleData.map((vehicle: Vehicle, index: number) => (
+        <VehicleSection key={`vehicle-${index}`} vehicle={vehicle} />
+      ))}
 
       {/* FAQ SECTION */}
       {faq && faq.length > 0 && (
