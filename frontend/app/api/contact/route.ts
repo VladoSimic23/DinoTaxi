@@ -6,27 +6,16 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, route, message } = body;
 
-    // To use this, the user will need to configure environment variables in Vercel:
-    // EMAIL_USER (e.g. your GMAIL)
-    // EMAIL_PASS (App Password generated from Google Account Settings)
-    
-    // As a fallback to prevent 500 crashes before they setup ENV variables
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.warn("Contact Form Email Not Sent: Missing EMAIL_USER or EMAIL_PASS environment variables.");
-      // Soft-fail for now so the UI shows success to simulate it
-      return NextResponse.json({ success: true, warning: 'Environment variables not configured' }, { status: 200 }); 
-    }
-
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: 'dubrovniktaxicab@gmail.com',
+        pass: 'gxulmizarcipfalb',
       },
     });
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: 'dubrovniktaxicab@gmail.com',
       to: 'dubrovniktaxicab@gmail.com', // Where you want to receive emails
       replyTo: email,
       subject: `New Taxi Inquiry from ${name} ${route ? `- Route: ${route}` : ''}`,
