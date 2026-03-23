@@ -15,7 +15,7 @@ export interface Vehicle {
   gallery?: { url: string }[];
 }
 
-export default function VehicleSection({ vehicle }: { vehicle: Vehicle }) {
+export default function VehicleSection({ vehicle, index = 0 }: { vehicle: Vehicle, index?: number }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
   const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -41,17 +41,19 @@ export default function VehicleSection({ vehicle }: { vehicle: Vehicle }) {
   if (!vehicle) return null;
 
   return (
-    <section className="py-24 bg-neutral-900 text-white" id="vehicle">
+    <section className={`bg-neutral-900 text-white ${index === 0 ? 'pt-24 pb-12' : 'py-12'}`} id={index === 0 ? "vehicle" : undefined}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-white">Ride in Comfort</h2>
-          <p className="text-neutral-400 text-lg">Experience our premium selected vehicle for your transfers.</p>
-        </div>
+        {index === 0 && (
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-white">Ride in Comfort</h2>
+            <p className="text-neutral-400 text-lg">Experience our premium selected vehicle for your transfers.</p>
+          </div>
+        )}
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Gallery Carousel */}
           {vehicle.gallery && vehicle.gallery.length > 0 && (
-            <div className="relative group">
+            <div className={`relative group ${index % 2 !== 0 ? 'order-1 lg:order-2' : ''}`}>
               <div className="overflow-hidden rounded-3xl" ref={emblaRef}>
                 <div className="flex">
                   {vehicle.gallery.map((img: { url: string }, idx: number) => (
@@ -101,7 +103,7 @@ export default function VehicleSection({ vehicle }: { vehicle: Vehicle }) {
           )}
 
           {/* Vehicle Info */}
-          <div>
+          <div className={index % 2 !== 0 ? 'order-2 lg:order-1' : ''}>
             <div className="inline-block px-4 py-1.5 rounded-full bg-neutral-800 text-yellow-500 text-sm font-semibold mb-4 border border-white/10">
               {vehicle.type || "Premium Vehicle"}
             </div>

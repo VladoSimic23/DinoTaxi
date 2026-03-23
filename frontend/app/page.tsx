@@ -258,7 +258,7 @@ export default async function Home() {
 
       {/* VEHICLES SECTION */}
       {vehicleData && vehicleData.length > 0 && vehicleData.map((vehicle: Vehicle, index: number) => (
-        <VehicleSection key={`vehicle-${index}`} vehicle={vehicle} />
+        <VehicleSection key={`vehicle-${index}`} vehicle={vehicle} index={index} />
       ))}
 
       {/* FAQ SECTION */}
