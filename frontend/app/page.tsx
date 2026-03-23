@@ -2,6 +2,7 @@ import { client, urlFor } from "../sanity/client";
 import WhatsAppButton from "../components/WhatsAppButton";
 import VehicleSection, { Vehicle } from "../components/VehicleSection";
 import FAQAccordion from "../components/FAQAccordion";
+import ContactForm from "../components/ContactForm";
 import { Car, Clock, ShieldCheck, MapPin, Map, MessageCircle, ChevronRight, CheckCircle2, Mail } from "lucide-react";
 import Image from "next/image";
 
@@ -310,6 +311,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* CONTACT FORM SECTION */}
+      <ContactForm />
 
       {/* FOOTER */}
       <footer className="bg-black py-12 text-center text-neutral-400 px-6">
