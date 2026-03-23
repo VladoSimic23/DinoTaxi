@@ -2,7 +2,7 @@ import { client, urlFor } from "../sanity/client";
 import WhatsAppButton from "../components/WhatsAppButton";
 import VehicleSection, { Vehicle } from "../components/VehicleSection";
 import FAQAccordion from "../components/FAQAccordion";
-import { Car, Clock, ShieldCheck, MapPin, Map, MessageCircle, ChevronRight, CheckCircle2 } from "lucide-react";
+import { Car, Clock, ShieldCheck, MapPin, Map, MessageCircle, ChevronRight, CheckCircle2, Mail } from "lucide-react";
 import Image from "next/image";
 
 export const revalidate = 60; // ISR: Osvježava stranicu svakih 60 sekundi kada dođe novi request
@@ -288,34 +288,53 @@ export default async function Home() {
         <div className="max-w-3xl mx-auto relative z-10">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">Ready to book your ride?</h2>
           <p className="text-xl text-neutral-300 mb-10">
-            Contact us directly on WhatsApp. We usually reply within minutes!
+            Contact us directly on WhatsApp or send us an email. We usually reply within minutes!
           </p>
-          <a 
-            href={whatsappUrl} 
-            target="_blank" 
-            rel="noreferrer"
-            className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-lg shadow-green-500/30"
-          >
-            <MessageCircle size={28} />
-            Let&apos;s Chat on WhatsApp
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a 
+              href={whatsappUrl} 
+              target="_blank" 
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-lg shadow-green-500/30 w-full sm:w-auto justify-center"
+            >
+              <MessageCircle size={28} />
+              WhatsApp
+            </a>
+            <a 
+              href="mailto:dubrovniktaxicab@gmail.com?subject=Taxi%20Booking%20Inquiry" 
+              className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-10 py-5 rounded-full font-bold text-xl transition-all border border-white/10 w-full sm:w-auto justify-center"
+            >
+              <Mail size={28} />
+              Email Us
+            </a>
+          </div>
         </div>
       </section>
 
       {/* FOOTER */}
       <footer className="bg-black py-12 text-center text-neutral-400 px-6">
-        <div className="max-w-4xl mx-auto flex flex-col items-center justify-center gap-2">
+        <div className="max-w-4xl mx-auto flex flex-col items-center justify-center gap-4">
           <p className="mb-2">© {new Date().getFullYear()} {config?.title || "Dubrovnik Taxi Cab"}. All rights reserved.</p>
           
-          <a 
-            href="https://www.google.com/maps/search/?api=1&query=Dolska+ulica,+20000+Dubrovnik,+Croatia" 
-            target="_blank" 
-            rel="noreferrer"
-            className="flex items-center gap-2 text-sm hover:text-white transition-colors hover:underline group"
-          >
-            <MapPin size={16} className="text-yellow-500 group-hover:scale-110 transition-transform" />
-            <p>Dolska ulica, 20000 Dubrovnik, Croatia</p>
-          </a>
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+            <a 
+              href="https://www.google.com/maps/search/?api=1&query=Dolska+ulica,+20000+Dubrovnik,+Croatia" 
+              target="_blank" 
+              rel="noreferrer"
+              className="flex items-center gap-2 text-sm hover:text-white transition-colors hover:underline group"
+            >
+              <MapPin size={16} className="text-yellow-500 group-hover:scale-110 transition-transform" />
+              <p>Dolska ulica, 20000 Dubrovnik, Croatia</p>
+            </a>
+            
+            <a 
+              href="mailto:dubrovniktaxicab@gmail.com" 
+              className="flex items-center gap-2 text-sm hover:text-white transition-colors hover:underline group"
+            >
+              <Mail size={16} className="text-yellow-500 group-hover:scale-110 transition-transform" />
+              <p>dubrovniktaxicab@gmail.com</p>
+            </a>
+          </div>
           
           <p className="text-sm mt-2">Operating 24/7</p>
         </div>
