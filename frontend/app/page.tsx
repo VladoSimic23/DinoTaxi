@@ -166,10 +166,11 @@ export default async function Home() {
                 {hero?.ctaText || "Book via WhatsApp"}
               </a>
               <a 
-                href="#services" 
+                href="#contact" 
                 className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-8 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2"
               >
-                Our Services <ChevronRight size={20} />
+                <Mail size={24} />
+                Email Us
               </a>
             </div>
           </div>
