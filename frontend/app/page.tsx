@@ -79,6 +79,7 @@ export default async function Home() {
     "@id": config?.url || "https://www.dubrovniktaxicab.com",
     url: config?.url || "https://www.dubrovniktaxicab.com",
     telephone: `+${cleanPhone}`,
+    openingHours: "Mo-Su 08:00-22:00",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Dolska ulica",
@@ -92,14 +93,10 @@ export default async function Home() {
       longitude: 18.0944,
     },
     areaServed: [
-      {
-        "@type": "City",
-        name: "Dubrovnik",
-      },
-      {
-        "@type": "Airport",
-        name: "Dubrovnik Airport (DBV)",
-      },
+      { "@type": "City", name: "Dubrovnik" },
+      { "@type": "Airport", name: "Dubrovnik Airport (DBV)" },
+      { "@type": "AdministrativeArea", name: "Dubrovnik-Neretva County" },
+      { "@type": "Country", name: "Montenegro" }, // Ako radite izlete u Kotor!
     ],
     priceRange: "$$",
   };

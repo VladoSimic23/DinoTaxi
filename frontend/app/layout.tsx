@@ -15,20 +15,38 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await client.fetch(`*[_type == "siteConfig"][0]`);
-  
+
   if (!config) {
     return {
       title: "Dubrovnik Taxi Cab",
       description: "Reliable and fast taxi service in Dubrovnik.",
+      icons: {
+        icon: [
+          { url: "/icon.png" }, // Glavna ikona
+          { url: "/icon-32x32.png", sizes: "32x32", type: "image/png" },
+        ],
+        apple: [
+          { url: "/apple-touch-icon.png" }, // Za iPhone (180x180px)
+        ],
+      },
     };
   }
 
   const ogImageUrl = config.ogImage ? urlFor(config.ogImage).url() : undefined;
 
   return {
-    title: config.title || "Dubrovnik Taxi Cab | Airport Transfers & City Rides",
-    description: config.description || "Premium and reliable taxi service in Dubrovnik, Croatia. Fixed prices, comfortable cars, and professional local drivers. Book easily via WhatsApp.",
-    keywords: config.keywords || ["dubrovnik taxi", "taxi dubrovnik", "dubrovnik airport transfer", "dubrovnik cab", "uber dubrovnik alternative"],
+    title:
+      config.title || "Dubrovnik Taxi Cab | Airport Transfers & City Rides",
+    description:
+      config.description ||
+      "Premium and reliable taxi service in Dubrovnik, Croatia. Fixed prices, comfortable cars, and professional local drivers. Book easily via WhatsApp.",
+    keywords: config.keywords || [
+      "dubrovnik taxi",
+      "taxi dubrovnik",
+      "dubrovnik airport transfer",
+      "dubrovnik cab",
+      "uber dubrovnik alternative",
+    ],
     authors: [{ name: "Dubrovnik Taxi Cab" }],
     creator: "Dubrovnik Taxi Cab",
     publisher: "Dubrovnik Taxi Cab",
@@ -44,11 +62,11 @@ export async function generateMetadata(): Promise<Metadata> {
       url: config.url || "https://www.dubrovniktaxicab.com",
       siteName: config.title,
       images: ogImageUrl ? [{ url: ogImageUrl }] : [],
-      locale: 'en_US',
-      type: 'website',
+      locale: "en_US",
+      type: "website",
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: config.title,
       description: config.description,
       images: ogImageUrl ? [ogImageUrl] : [],
@@ -56,15 +74,24 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: config.url || "https://www.dubrovniktaxicab.com",
     },
+    icons: {
+      icon: [
+        { url: "/icon.png" }, // Glavna ikona
+        { url: "/icon-32x32.png", sizes: "32x32", type: "image/png" },
+      ],
+      apple: [
+        { url: "/apple-touch-icon.png" }, // Za iPhone (180x180px)
+      ],
+    },
     robots: {
       index: true,
       follow: true,
       googleBot: {
         index: true,
         follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
     },
   };
