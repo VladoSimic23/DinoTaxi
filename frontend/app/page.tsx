@@ -1,5 +1,4 @@
 import { client, urlFor } from "../sanity/client";
-import WhatsAppButton from "../components/WhatsAppButton";
 import VehicleSection, { Vehicle } from "../components/VehicleSection";
 import FAQAccordion from "../components/FAQAccordion";
 import ContactForm from "../components/ContactForm";
@@ -119,7 +118,7 @@ export default async function Home() {
       : null;
 
   return (
-    <main className="min-h-screen">
+    <>
       {/* Inject JSON-LD into the page */}
       <script
         type="application/ld+json"
@@ -131,24 +130,6 @@ export default async function Home() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       )}
-
-      {/* HEADER / NAV */}
-      <header className="absolute top-0 w-full z-50 bg-black/20 backdrop-blur-sm border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-black text-white italic tracking-tighter">
-            DBV<span className="text-yellow-500">TAXI</span>
-          </div>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-2 rounded-full font-bold text-sm transition-colors flex items-center gap-2"
-          >
-            <MessageCircle size={18} />
-            Book Now
-          </a>
-        </div>
-      </header>
 
       {/* HERO SECTION */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 flex items-center min-h-[90vh] overflow-hidden">
@@ -271,13 +252,13 @@ export default async function Home() {
 
       {/* SERVICES SECTION */}
       {services && services.length > 0 && (
-        <section className="py-24 bg-neutral-50" id="services">
+        <section className="py-24" id="services">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <h2 className="text-4xl font-bold text-neutral-900 mb-4">
+              <h2 className="text-4xl font-bold text-white mb-4">
                 Our Services & Transfers
               </h2>
-              <p className="text-neutral-600 text-lg">
+              <p className="text-neutral-400 text-lg">
                 We offer a variety of transfer services tailored to your needs.
               </p>
             </div>
@@ -294,15 +275,15 @@ export default async function Home() {
                 ) => (
                   <div
                     key={index}
-                    className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-neutral-100 group"
+                    className="bg-neutral-800 p-8 rounded-2xl shadow-sm hover:shadow-black/50 transition-shadow border border-neutral-700 group"
                   >
-                    <div className="bg-neutral-50 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div className="bg-neutral-900 border border-neutral-700/50 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                       {getIcon(service.iconName)}
                     </div>
-                    <h3 className="text-2xl font-bold text-neutral-900 mb-3">
+                    <h3 className="text-2xl font-bold text-white mb-3">
                       {service.title}
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
+                    <p className="text-neutral-400 leading-relaxed">
                       {service.description}
                     </p>
                   </div>
@@ -389,49 +370,6 @@ export default async function Home() {
 
       {/* CONTACT FORM SECTION */}
       <ContactForm />
-
-      {/* FOOTER */}
-      <footer className="bg-black py-12 text-center text-neutral-400 px-6">
-        <div className="max-w-4xl mx-auto flex flex-col items-center justify-center gap-4">
-          <p className="mb-2">
-            © {new Date().getFullYear()} {config?.title || "Dubrovnik Taxi Cab"}
-            . All rights reserved.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Dolska+ulica,+20000+Dubrovnik,+Croatia"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 text-sm hover:text-white transition-colors hover:underline group"
-            >
-              <MapPin
-                size={16}
-                className="text-yellow-500 group-hover:scale-110 transition-transform"
-              />
-              <p>Dolska ulica, 20000 Dubrovnik, Croatia</p>
-            </a>
-
-            <a
-              href="mailto:dubrovniktaxicab@gmail.com"
-              className="flex items-center gap-2 text-sm hover:text-white transition-colors hover:underline group"
-            >
-              <Mail
-                size={16}
-                className="text-yellow-500 group-hover:scale-110 transition-transform"
-              />
-              <p>dubrovniktaxicab@gmail.com</p>
-            </a>
-          </div>
-
-          <p className="text-sm mt-2">Operating 08 am - 10 pm</p>
-        </div>
-      </footer>
-
-      {/* Floating WhatsApp Widget */}
-      {config?.whatsappNumber && (
-        <WhatsAppButton phoneNumber={config.whatsappNumber} />
-      )}
-    </main>
+    </>
   );
 }

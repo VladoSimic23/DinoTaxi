@@ -1,3 +1,6 @@
+import { MessageCircle, MapPin, Mail } from "lucide-react";
+import Link from "next/link";
+import WhatsAppButton from "../components/WhatsAppButton";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -97,18 +100,94 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const config = await client.fetch(`*[_type == "siteConfig"][0]`);
+  const cleanPhone = config?.whatsappNumber?.replace(/[^0-9]/g, "") || "";
+  const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hello! I would like to book a taxi in Dubrovnik.")}`;
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
     >
-      <body className="antialiased font-sans text-gray-900 bg-white">
-        {children}
+      <body className="antialiased font-sans bg-neutral-900 text-white flex flex-col min-h-screen">
+        {/* HEADER / NAV */}
+        <header className="absolute top-0 w-full z-50 bg-black/20 backdrop-blur-sm border-b border-white/10">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <Link
+              href="/"
+              className="text-2xl font-black text-white italic tracking-tighter"
+            >
+              DBV<span className="text-yellow-500">TAXI</span>
+            </Link>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/services"
+                className="text-sm font-bold text-white hover:text-yellow-500 transition-colors"
+              >
+                Services
+              </Link>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-2 rounded-full font-bold text-sm transition-colors flex items-center gap-2"
+              >
+                <MessageCircle size={18} />
+                Book Now
+              </a>
+            </div>
+          </div>
+        </header>
+
+        <main className="flex-grow flex flex-col">{children}</main>
+
+        {/* FOOTER */}
+        <footer className="bg-black py-12 text-center text-neutral-400 px-6 mt-auto">
+          <div className="max-w-4xl mx-auto flex flex-col items-center justify-center gap-4">
+            <p className="mb-2">
+              © {new Date().getFullYear()}{" "}
+              {config?.title || "Dubrovnik Taxi Cab"}. All rights reserved.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Dolska+ulica,+20000+Dubrovnik,+Croatia"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-sm hover:text-white transition-colors hover:underline group"
+              >
+                <MapPin
+                  size={16}
+                  className="text-yellow-500 group-hover:scale-110 transition-transform"
+                />
+                <p>Dolska ulica, 20000 Dubrovnik, Croatia</p>
+              </a>
+
+              <a
+                href="mailto:dubrovniktaxicab@gmail.com"
+                className="flex items-center gap-2 text-sm hover:text-white transition-colors hover:underline group"
+              >
+                <Mail
+                  size={16}
+                  className="text-yellow-500 group-hover:scale-110 transition-transform"
+                />
+                <p>dubrovniktaxicab@gmail.com</p>
+              </a>
+            </div>
+
+            <p className="text-sm mt-2">Operating 08 am - 10 pm</p>
+          </div>
+        </footer>
+
+        {/* Floating WhatsApp Widget */}
+        {config?.whatsappNumber && (
+          <WhatsAppButton phoneNumber={config.whatsappNumber} />
+        )}
       </body>
     </html>
   );
