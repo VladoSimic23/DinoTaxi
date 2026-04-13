@@ -184,22 +184,8 @@ export default async function Home() {
           className="py-24 bg-neutral-900 border-y border-white/5"
           id="about"
         >
-          <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-            {about.image && (
-              <div className="relative h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl order-2 lg:order-1 ring-1 ring-white/10">
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 via-transparent to-transparent z-10" />
-                <Image
-                  src={urlFor(about.image).url()}
-                  alt={about.title || "About Dubrovnik Taxi"}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                  loading="eager"
-                  priority
-                />
-              </div>
-            )}
-            <div className="order-1 lg:order-2">
+          <div className="max-w-7xl mx-auto px-6">
+            <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 text-yellow-500 text-sm font-semibold mb-6 border border-yellow-500/20">
                 <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
                 Local Expertise
