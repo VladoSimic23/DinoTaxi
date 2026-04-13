@@ -156,7 +156,7 @@ export default async function RootLayout({
 
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Dolska+ulica,+20000+Dubrovnik,+Croatia"
+                href="https://www.google.com/search?q=Dubrovnik+Taxi+Cab+-+Airport+Transfers+%26+Private+Tours&kgmid=/g/11z3v_gdbs"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 text-sm hover:text-white transition-colors hover:underline group"

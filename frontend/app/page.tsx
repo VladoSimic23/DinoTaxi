@@ -12,7 +12,6 @@ import {
   CheckCircle2,
   Mail,
 } from "lucide-react";
-import Image from "next/image";
 
 export const revalidate = 60; // ISR: Osvježava stranicu svakih 60 sekundi kada dođe novi request
 

@@ -121,6 +121,7 @@ export default async function ServiceDetailsPage({ params }: Props) {
               src={urlFor(value).url()}
               alt={value.alt || service.title}
               fill
+              sizes="(max-width: 1024px) 100vw, 1024px"
               className="object-cover"
             />
           </div>
@@ -143,6 +144,7 @@ export default async function ServiceDetailsPage({ params }: Props) {
             src={urlFor(service.mainImage).url()}
             alt={service.title}
             fill
+            sizes="100vw"
             fetchPriority="high"
             className="object-cover opacity-60"
             priority
