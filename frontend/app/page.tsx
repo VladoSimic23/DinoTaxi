@@ -2,6 +2,7 @@ import { client, urlFor } from "../sanity/client";
 import VehicleSection, { Vehicle } from "../components/VehicleSection";
 import FAQAccordion from "../components/FAQAccordion";
 import ContactForm from "../components/ContactForm";
+import TrustindexWidget from "../components/TrustindexWidget";
 import {
   Car,
   Clock,
@@ -355,6 +356,25 @@ export default async function Home() {
 
       {/* CONTACT FORM SECTION */}
       <ContactForm />
+
+      <section className="py-20 bg-neutral-950 border-t border-white/10">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <span className="text-yellow-500 font-semibold uppercase tracking-wider text-sm">
+              Reviews
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mt-3 mb-4">
+              What Our Taxi Clients Say
+            </h2>
+            <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
+              Real feedback from travelers who used our taxi and transfer
+              services in Dubrovnik.
+            </p>
+          </div>
+
+          <TrustindexWidget />
+        </div>
+      </section>
     </>
   );
 }
