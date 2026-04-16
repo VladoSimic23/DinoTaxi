@@ -10,6 +10,7 @@ import {
   MapPin,
   Map,
   MessageCircle,
+  Phone,
   CheckCircle2,
   Mail,
 } from "lucide-react";
@@ -50,6 +51,8 @@ export default async function Home() {
   ]);
 
   const cleanPhone = config?.whatsappNumber?.replace(/[^0-9]/g, "") || "";
+  const phoneDisplay = "+385 99 775 7500";
+  const phoneHref = `tel:${phoneDisplay.replace(/\s+/g, "")}`;
   const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hello! I would like to book a taxi in Dubrovnik.")}`;
 
   if (!page) {
@@ -148,7 +151,7 @@ export default async function Home() {
         </div>
 
         <div className="px-6 mx-auto w-full max-w-7xl relative z-10 text-center lg:text-left">
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <h1 className="text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
               {hero?.heading || "Your Reliable Taxi in Dubrovnik"}
             </h1>
@@ -165,6 +168,13 @@ export default async function Home() {
               >
                 <MessageCircle size={24} />
                 {hero?.ctaText || "Book via WhatsApp"}
+              </a>
+              <a
+                href={phoneHref}
+                className="bg-yellow-500 hover:bg-yellow-400 text-black px-8 py-5 rounded-full font-bold text-lg transition-transform hover:scale-105 flex items-center justify-center gap-3 whitespace-nowrap"
+              >
+                <Phone size={24} />
+                {phoneDisplay}
               </a>
               <a
                 href="#contact"

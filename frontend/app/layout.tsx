@@ -1,6 +1,7 @@
-import { MessageCircle, MapPin, Mail } from "lucide-react";
+import { MapPin, Mail } from "lucide-react";
 import Link from "next/link";
 import WhatsAppButton from "../components/WhatsAppButton";
+import HeaderNav from "../components/HeaderNav";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -24,13 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Dubrovnik Taxi Cab",
       description: "Reliable and fast taxi service in Dubrovnik.",
       icons: {
-        icon: [
-          { url: "/icon.png" }, // Glavna ikona
-          { url: "/icon-32x32.png", sizes: "32x32", type: "image/png" },
-        ],
-        apple: [
-          { url: "/apple-touch-icon.png" }, // Za iPhone (180x180px)
-        ],
+        icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
       },
     };
   }
@@ -78,13 +73,7 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: config.url || "https://www.dubrovniktaxicab.com",
     },
     icons: {
-      icon: [
-        { url: "/icon.png" }, // Glavna ikona
-        { url: "/icon-32x32.png", sizes: "32x32", type: "image/png" },
-      ],
-      apple: [
-        { url: "/apple-touch-icon.png" }, // Za iPhone (180x180px)
-      ],
+      icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     },
     robots: {
       index: true,
@@ -107,6 +96,8 @@ export default async function RootLayout({
 }>) {
   const config = await client.fetch(`*[_type == "siteConfig"][0]`);
   const cleanPhone = config?.whatsappNumber?.replace(/[^0-9]/g, "") || "";
+  const phoneDisplay = "+385 99 775 7500";
+  const phoneHref = `tel:${phoneDisplay.replace(/\s+/g, "")}`;
   const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent("Hello! I would like to book a taxi in Dubrovnik.")}`;
 
   return (
@@ -124,23 +115,11 @@ export default async function RootLayout({
             >
               DBV<span className="text-yellow-500">TAXI</span>
             </Link>
-            <div className="flex items-center gap-6">
-              <Link
-                href="/services"
-                className="text-sm font-bold text-white hover:text-yellow-500 transition-colors"
-              >
-                Services
-              </Link>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-2 rounded-full font-bold text-sm transition-colors flex items-center gap-2"
-              >
-                <MessageCircle size={18} />
-                Book Now
-              </a>
-            </div>
+            <HeaderNav
+              phoneHref={phoneHref}
+              phoneDisplay={phoneDisplay}
+              whatsappUrl={whatsappUrl}
+            />
           </div>
         </header>
 
