@@ -3,6 +3,8 @@ import VehicleSection, { Vehicle } from "../components/VehicleSection";
 import FAQAccordion from "../components/FAQAccordion";
 import ContactForm from "../components/ContactForm";
 import TrustindexWidget from "../components/TrustindexWidget";
+import Link from "next/link";
+import Image from "next/image";
 import {
   Car,
   Clock,
@@ -36,7 +38,7 @@ const getIcon = (name: string) => {
 };
 
 export default async function Home() {
-  const [page, config, vehicleData] = await Promise.all([
+  const [page, config, vehicleData, latestServices] = await Promise.all([
     client.fetch(`*[_type == "homepage"][0]`),
     client.fetch(`*[_type == "siteConfig"][0]`),
     client.fetch(`*[_type == "vehicle"] | order(_createdAt asc){
@@ -47,6 +49,12 @@ export default async function Home() {
       features,
       description,
       "gallery": gallery[].asset->{url}
+    }`),
+    client.fetch(`*[_type == "service" && defined(slug.current)] | order(_createdAt desc)[0...6]{
+      title,
+      shortDescription,
+      mainImage,
+      "slug": slug.current
     }`),
   ]);
 
@@ -302,6 +310,67 @@ export default async function Home() {
                       {service.description}
                     </p>
                   </div>
+                ),
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* TOURSE SECTION */}
+      {latestServices && latestServices.length > 0 && (
+        <section className="py-24 bg-neutral-900/60 border-y border-white/5" id="tourse">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <h2 className="text-4xl font-bold text-white mb-4">Tourse</h2>
+              <p className="text-neutral-400 text-lg">
+                Explore our latest tours and transfers around Dubrovnik.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {latestServices.map(
+                (item: {
+                  title: string;
+                  shortDescription?: string;
+                  mainImage?: unknown;
+                  slug: string;
+                }) => (
+                  <article
+                    key={item.slug}
+                    className="bg-neutral-800 rounded-2xl overflow-hidden border border-neutral-700 hover:border-yellow-500/40 transition-colors"
+                  >
+                    <Link href={`/services/${item.slug}`} className="block">
+                      <div className="relative h-52">
+                        {item.mainImage ? (
+                          <Image
+                            src={urlFor(item.mainImage).width(800).height(520).url()}
+                            alt={item.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                        ) : (
+                          <div className="h-full w-full bg-neutral-700" />
+                        )}
+                      </div>
+                    </Link>
+
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-white mb-3">
+                        {item.title}
+                      </h3>
+                      <p className="text-neutral-400 leading-relaxed mb-5 line-clamp-3">
+                        {item.shortDescription || "Read more about this tour and transfer option."}
+                      </p>
+                      <Link
+                        href={`/services/${item.slug}`}
+                        className="inline-flex items-center font-semibold text-yellow-500 hover:text-yellow-400 transition-colors"
+                      >
+                        Read more
+                      </Link>
+                    </div>
+                  </article>
                 ),
               )}
             </div>
