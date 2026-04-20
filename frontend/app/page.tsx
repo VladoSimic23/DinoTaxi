@@ -143,7 +143,7 @@ export default async function Home() {
       )}
 
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 flex items-center min-h-[90vh] overflow-hidden">
+      <section className="relative pt-[118px] pb-[70px] lg:pt-48 lg:pb-32 flex items-center min-h-[90vh] overflow-hidden">
         {/* Background Dark Cool Overlay */}
         <div className="absolute inset-0 z-0 bg-neutral-950">
           {/* Subtle gradient pattern */}
@@ -160,10 +160,10 @@ export default async function Home() {
 
         <div className="px-6 mx-auto w-full max-w-7xl relative z-10 text-center lg:text-left">
           <div className="max-w-4xl">
-            <h1 className="text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
               {hero?.heading || "Your Reliable Taxi in Dubrovnik"}
             </h1>
-            <h2 className="text-lg lg:text-2xl text-neutral-300 mb-10 leading-relaxed font-light">
+            <h2 className="text-base sm:text-lg lg:text-2xl text-neutral-300 mb-8 sm:mb-10 leading-relaxed font-light">
               {hero?.subheading ||
                 "Fast, safe, and comfortable transfers from the airport to your destination."}
             </h2>
@@ -172,23 +172,23 @@ export default async function Home() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white px-8 py-5 rounded-full font-bold text-lg transition-transform hover:scale-105 flex items-center justify-center gap-3 shadow-lg shadow-green-500/30"
+                className="bg-green-500 hover:bg-green-600 text-white px-0 sm:px-8 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg transition-transform hover:scale-105 flex items-center justify-center gap-2.5 sm:gap-3 shadow-lg shadow-green-500/30 w-full sm:w-auto"
               >
-                <MessageCircle size={24} />
+                <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
                 {hero?.ctaText || "Book via WhatsApp"}
               </a>
               <a
                 href={phoneHref}
-                className="bg-yellow-500 hover:bg-yellow-400 text-black px-8 py-5 rounded-full font-bold text-lg transition-transform hover:scale-105 flex items-center justify-center gap-3 whitespace-nowrap"
+                className="bg-yellow-500 hover:bg-yellow-400 text-black px-0 sm:px-8 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg transition-transform hover:scale-105 flex items-center justify-center gap-2.5 sm:gap-3 whitespace-nowrap w-full sm:w-auto"
               >
-                <Phone size={24} />
+                <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                 {phoneDisplay}
               </a>
               <a
                 href="#contact"
-                className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-8 py-5 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2"
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-0 sm:px-8 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg transition-all flex items-center justify-center gap-2 w-full sm:w-auto"
               >
-                <Mail size={24} />
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
                 Email Us
               </a>
             </div>
@@ -199,7 +199,7 @@ export default async function Home() {
       {/* ABOUT SECTION */}
       {about && (
         <section
-          className="py-24 bg-neutral-900 border-y border-white/5"
+          className="py-[86px] lg:py-24 bg-neutral-900 border-y border-white/5"
           id="about"
         >
           <div className="max-w-7xl mx-auto px-6">
@@ -254,7 +254,7 @@ export default async function Home() {
         </section>
       )}
 
-      <section className="py-20 bg-neutral-950 border-t border-white/10">
+      <section className="py-[70px] lg:py-20 bg-neutral-950 border-t border-white/10">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-10">
             <span className="text-yellow-500 font-semibold uppercase tracking-wider text-sm">
@@ -275,7 +275,7 @@ export default async function Home() {
 
       {/* SERVICES SECTION */}
       {services && services.length > 0 && (
-        <section className="py-24" id="services">
+        <section className="py-[86px] lg:py-24" id="services">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <h2 className="text-4xl font-bold text-white mb-4">
@@ -319,7 +319,10 @@ export default async function Home() {
 
       {/* TOURSE SECTION */}
       {latestServices && latestServices.length > 0 && (
-        <section className="py-24 bg-neutral-900/60 border-y border-white/5" id="tourse">
+        <section
+          className="py-[86px] lg:py-24 bg-neutral-900/60 border-y border-white/5"
+          id="tourse"
+        >
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <h2 className="text-4xl font-bold text-white mb-4">Tourse</h2>
@@ -344,7 +347,10 @@ export default async function Home() {
                       <div className="relative h-52">
                         {item.mainImage ? (
                           <Image
-                            src={urlFor(item.mainImage).width(800).height(520).url()}
+                            src={urlFor(item.mainImage)
+                              .width(800)
+                              .height(520)
+                              .url()}
                             alt={item.title}
                             fill
                             className="object-cover"
@@ -361,7 +367,8 @@ export default async function Home() {
                         {item.title}
                       </h3>
                       <p className="text-neutral-400 leading-relaxed mb-5 line-clamp-3">
-                        {item.shortDescription || "Read more about this tour and transfer option."}
+                        {item.shortDescription ||
+                          "Read more about this tour and transfer option."}
                       </p>
                       <Link
                         href={`/services/${item.slug}`}
@@ -392,7 +399,7 @@ export default async function Home() {
       {/* FAQ SECTION */}
       {faq && faq.length > 0 && (
         <section
-          className="py-24 bg-neutral-950 relative overflow-hidden"
+          className="py-[86px] lg:py-24 bg-neutral-950 relative overflow-hidden"
           id="faq"
         >
           <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-500/10 rounded-full blur-[100px] pointer-events-none" />
@@ -421,7 +428,7 @@ export default async function Home() {
       )}
 
       {/* CTA SECTION */}
-      <section className="py-24 bg-neutral-900 text-white text-center px-6 relative overflow-hidden">
+      <section className="py-[86px] lg:py-24 bg-neutral-900 text-white text-center px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-yellow-500/10" />
         <div className="max-w-3xl mx-auto relative z-10">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
@@ -436,14 +443,14 @@ export default async function Home() {
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-lg shadow-green-500/30 w-full sm:w-auto justify-center"
+              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-0 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-lg shadow-green-500/30 w-full sm:w-auto justify-center"
             >
               <MessageCircle size={28} />
               WhatsApp
             </a>
             <a
               href="mailto:dubrovniktaxicab@gmail.com?subject=Taxi%20Booking%20Inquiry"
-              className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-10 py-5 rounded-full font-bold text-xl transition-all border border-white/10 w-full sm:w-auto justify-center"
+              className="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-0 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-xl transition-all border border-white/10 w-full sm:w-auto justify-center"
             >
               <Mail size={28} />
               Email Us

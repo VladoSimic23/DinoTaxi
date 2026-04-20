@@ -35,7 +35,7 @@ export default function HeaderNav({
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-yellow-500 transition-colors"
+          className="inline-flex items-center gap-2 px-0 py-4 sm:py-0 text-sm font-bold text-white hover:text-yellow-500 transition-colors"
           aria-expanded={isOpen}
           aria-haspopup="menu"
           aria-controls="header-dropdown-menu"
@@ -56,7 +56,7 @@ export default function HeaderNav({
             <Link
               href="/services"
               role="menuitem"
-              className="block rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
+              className="block rounded-xl px-0 sm:px-4 py-4 sm:py-3 text-sm font-semibold text-white hover:bg-white/10"
               onClick={() => setIsOpen(false)}
             >
               Services
@@ -64,7 +64,7 @@ export default function HeaderNav({
             <a
               href={phoneHref}
               role="menuitem"
-              className="flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10"
+              className="flex items-center gap-2 rounded-xl px-0 sm:px-4 py-4 sm:py-3 text-sm font-semibold text-white hover:bg-white/10"
               onClick={() => setIsOpen(false)}
             >
               <Phone size={16} />
@@ -75,7 +75,7 @@ export default function HeaderNav({
               target="_blank"
               rel="noreferrer"
               role="menuitem"
-              className="mt-1 flex items-center gap-2 rounded-xl bg-yellow-500 px-4 py-3 text-sm font-bold text-black hover:bg-yellow-400"
+              className="mt-1 flex items-center gap-2 rounded-xl bg-yellow-500 px-0 sm:px-4 py-4 sm:py-3 text-sm font-bold text-black hover:bg-yellow-400"
               onClick={() => setIsOpen(false)}
             >
               <MessageCircle size={16} />
