@@ -169,7 +169,7 @@ export default async function Home() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white px-0 sm:px-8 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg transition-transform hover:scale-105 flex items-center justify-center gap-2.5 sm:gap-3 shadow-lg shadow-green-500/30 w-full sm:w-auto"
+                className="bg-green-700 hover:bg-green-600 text-white px-0 sm:px-8 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg transition-transform hover:scale-105 flex items-center justify-center gap-2.5 sm:gap-3 shadow-lg shadow-green-900/30 w-full sm:w-auto"
               >
                 <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
                 {hero?.ctaText || "Book via WhatsApp"}
@@ -440,7 +440,7 @@ export default async function Home() {
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-0 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-lg shadow-green-500/30 w-full sm:w-auto justify-center"
+              className="inline-flex items-center gap-3 bg-green-700 hover:bg-green-600 text-white px-0 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-lg shadow-green-900/30 w-full sm:w-auto justify-center"
             >
               <MessageCircle size={28} />
               WhatsApp
