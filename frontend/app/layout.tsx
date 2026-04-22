@@ -107,7 +107,7 @@ export default async function RootLayout({
     >
       <body className="antialiased font-sans bg-neutral-900 text-white flex flex-col min-h-screen">
         {/* HEADER / NAV */}
-        <header className="absolute top-0 w-full z-50 bg-black/20 backdrop-blur-sm border-b border-white/10">
+        <header className="absolute top-0 w-full z-50 bg-black/60 border-b border-white/10">
           <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <Link
               href="/"

@@ -127,7 +127,8 @@ export default async function ServicesPage() {
                     {service.shortDescription}
                   </p>
                   <div className="text-yellow-500 font-bold flex items-center gap-2">
-                    Read more <span className="text-xl leading-none">→</span>
+                    Read more about {service.title}{" "}
+                    <span className="text-xl leading-none">→</span>
                   </div>
                 </div>
               </Link>

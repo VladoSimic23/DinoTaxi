@@ -1,10 +1,8 @@
 import { client, urlFor } from "../sanity/client";
-import VehicleSection, { Vehicle } from "../components/VehicleSection";
-import FAQAccordion from "../components/FAQAccordion";
-import ContactForm from "../components/ContactForm";
-import TrustindexWidget from "../components/TrustindexWidget";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import type { Vehicle } from "../components/VehicleSection";
 import {
   Car,
   Clock,
@@ -16,6 +14,13 @@ import {
   CheckCircle2,
   Mail,
 } from "lucide-react";
+
+const VehicleSection = dynamic(() => import("../components/VehicleSection"));
+const FAQAccordion = dynamic(() => import("../components/FAQAccordion"));
+const ContactForm = dynamic(() => import("../components/ContactForm"));
+const TrustindexWidget = dynamic(
+  () => import("../components/TrustindexWidget"),
+);
 
 export const revalidate = 60; // ISR: Osvježava stranicu svakih 60 sekundi kada dođe novi request
 
@@ -144,18 +149,10 @@ export default async function Home() {
 
       {/* HERO SECTION */}
       <section className="relative pt-[118px] pb-[70px] lg:pt-48 lg:pb-32 flex items-center min-h-[90vh] overflow-hidden">
-        {/* Background Dark Cool Overlay */}
+        {/* Keep above-the-fold background visually rich but cheap to paint for faster LCP */}
         <div className="absolute inset-0 z-0 bg-neutral-950">
-          {/* Subtle gradient pattern */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-neutral-800/40 via-neutral-950 to-black"></div>
-
-          {/* Decorative glowing orbs */}
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-yellow-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
-          <div className="absolute -bottom-32 -left-32 w-[700px] h-[700px] bg-neutral-800/60 rounded-full blur-[150px] pointer-events-none"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-yellow-600/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-          {/* Subtle grid pattern to give it a modern texture */}
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-[0.03]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(1200px_600px_at_85%_0%,rgba(234,179,8,0.14),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,23,23,0.75),rgba(10,10,10,1))]" />
         </div>
 
         <div className="px-6 mx-auto w-full max-w-7xl relative z-10 text-center lg:text-left">
@@ -374,7 +371,7 @@ export default async function Home() {
                         href={`/services/${item.slug}`}
                         className="inline-flex items-center font-semibold text-yellow-500 hover:text-yellow-400 transition-colors"
                       >
-                        Read more
+                        Read more about {item.title}
                       </Link>
                     </div>
                   </article>
