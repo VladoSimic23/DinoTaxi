@@ -18,9 +18,9 @@ import {
 const VehicleSection = dynamic(() => import("../components/VehicleSection"));
 const FAQAccordion = dynamic(() => import("../components/FAQAccordion"));
 const ContactForm = dynamic(() => import("../components/ContactForm"));
-const TrustindexWidget = dynamic(
-  () => import("../components/TrustindexWidget"),
-);
+// const TrustindexWidget = dynamic(
+//   () => import("../components/TrustindexWidget"),
+// );
 
 export const revalidate = 60; // ISR: Osvježava stranicu svakih 60 sekundi kada dođe novi request
 
@@ -251,7 +251,7 @@ export default async function Home() {
         </section>
       )}
 
-      <section className="py-[70px] lg:py-20 bg-neutral-950 border-t border-white/10">
+      {/* <section className="py-[70px] lg:py-20 bg-neutral-950 border-t border-white/10">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-10">
             <span className="text-yellow-500 font-semibold uppercase tracking-wider text-sm">
@@ -268,7 +268,7 @@ export default async function Home() {
 
           <TrustindexWidget />
         </div>
-      </section>
+      </section> */}
 
       {/* SERVICES SECTION */}
       {services && services.length > 0 && (
