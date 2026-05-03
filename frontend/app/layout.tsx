@@ -69,9 +69,6 @@ export async function generateMetadata(): Promise<Metadata> {
       description: config.description,
       images: ogImageUrl ? [ogImageUrl] : [],
     },
-    alternates: {
-      canonical: config.url || "https://www.dubrovniktaxicab.com",
-    },
     icons: {
       icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     },

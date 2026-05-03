@@ -9,7 +9,8 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/_next/", "/studio/"], // Zabrani crawlerima pristup API-ju i eventualnom lokalnom studiju
+      // Keep app internals private, but do not block Next.js assets used for rendering.
+      disallow: ["/api/", "/studio/"],
     },
     sitemap: `${baseUrl}/sitemap.xml`,
   };

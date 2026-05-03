@@ -3,11 +3,14 @@ import { client } from "./sanity/client";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const config = await client.fetch(`*[_type == "siteConfig"][0]`);
-  const baseUrl = config?.url || "https://www.dubrovniktaxicab.com";
+  const baseUrl = (config?.url || "https://www.dubrovniktaxicab.com").replace(
+    /\/$/,
+    "",
+  );
 
   // Povuci sve usluge iz Sanity-ja
   const services = await client.fetch(
-    `*[_type == "service"]{ "slug": slug.current, _updatedAt }`,
+    `*[_type == "service" && defined(slug.current)]{ "slug": slug.current, _updatedAt }`,
   );
 
   const serviceUrls = services.map(

@@ -26,14 +26,27 @@ const getIcon = (name?: string) => {
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await client.fetch(`*[_type == "siteConfig"][0]`);
+  const baseUrl = (config?.url || "https://www.dubrovniktaxicab.com").replace(
+    /\/$/,
+    "",
+  );
+
   return {
     title: `Our Services | ${config?.title || "Dubrovnik Taxi"}`,
     description:
       "Explore our premium taxi and transfer services in Dubrovnik, Croatia.",
+    alternates: {
+      canonical: `${baseUrl}/services`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
     openGraph: {
       title: `Our Services | ${config?.title || "Dubrovnik Taxi"}`,
       description:
         "Explore our premium taxi and transfer services in Dubrovnik, Croatia.",
+      url: `${baseUrl}/services`,
       images: config?.ogImage ? [urlFor(config.ogImage).url()] : [],
     },
   };

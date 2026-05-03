@@ -165,6 +165,12 @@ export default async function Home() {
                 "Fast, safe, and comfortable transfers from the airport to your destination."}
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Link
+                href="/services"
+                className="bg-white text-black hover:bg-neutral-200 px-0 sm:px-8 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg transition-transform hover:scale-105 flex items-center justify-center gap-2 w-full sm:w-auto"
+              >
+                View Services
+              </Link>
               <a
                 href={whatsappUrl}
                 target="_blank"
